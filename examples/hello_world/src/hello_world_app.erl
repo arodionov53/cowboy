@@ -16,6 +16,7 @@ start(_Type, _Args) ->
 			{"/", toppage_handler, []}
 		]}
 	]),
+	io:format("~p:~p Dispatch=~p~n", [?MODULE, ?FUNCTION_NAME, Dispatch]),
 	{ok, _} = cowboy:start_http(http, 100, [{port, 8080}], [
 		{env, [{dispatch, Dispatch}]}
 	]),
