@@ -1,7 +1,7 @@
 {"1.2.0",
 [{<<"cowboy">>,
   {git,"https://github.com/arodionov53/cowboy.git",
-       {ref,"c7d0ca513c0b559cbae72ac566285e4275c44201"}},
+       {ref,"cb889f966e2dce5bc1091388e66457ccf7155d94"}},
   0},
  {<<"cowlib">>,
   {git,"git://github.com/lpgauth/cowlib.git",
