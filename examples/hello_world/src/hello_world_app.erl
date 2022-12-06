@@ -17,7 +17,7 @@ start(_Type, _Args) ->
 		]}
 	]),
 	io:format("~p:~p Dispatch=~p~n", [?MODULE, ?FUNCTION_NAME, Dispatch]),
-	{ok, _} = cowboy:start_http(http, 100, [{port, 8080}], [
+	{ok, _} = cowboy:start_http(http, 2, [{port, 8080}], [
 		{env, [{dispatch, Dispatch}]}
 	]),
 	hello_world_sup:start_link().
