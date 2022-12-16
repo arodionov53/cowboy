@@ -33,6 +33,9 @@
 -export([execute/2]).
 -export([handler_loop/4]).
 
+% -define(ACTIVE, once).
+-define(ACTIVE, 100).
+
 -record(state, {
 	env :: cowboy_middleware:env(),
 	hibernate = false :: boolean(),
@@ -144,12 +147,12 @@ handler_after_callback(Req, State, Handler, HandlerState) ->
 	when Req::cowboy_req:req().
 handler_before_loop(Req, State=#state{hibernate=true}, Handler, HandlerState) ->
 	[Socket, Transport] = cowboy_req:get([socket, transport], Req),
-	Transport:setopts(Socket, [{active, once}]),
+	Transport:setopts(Socket, [{active, ?ACTIVE}]),
 	{suspend, ?MODULE, handler_loop,
 		[Req, State#state{hibernate=false}, Handler, HandlerState]};
 handler_before_loop(Req, State, Handler, HandlerState) ->
 	[Socket, Transport] = cowboy_req:get([socket, transport], Req),
-	Transport:setopts(Socket, [{active, once}]),
+	Transport:setopts(Socket, [{active, ?ACTIVE}]),
 	handler_loop(Req, State, Handler, HandlerState).
 
 %% Almost the same code can be found in cowboy_websocket.
